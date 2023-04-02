@@ -5,26 +5,32 @@
 ## Makefile
 ##
 
-SRC:		src/main.c
+SRC		=	src/main.c
 
-CC:		gcc
+CC		=	gcc
 
-OBJ:		$(SRC:.c=.o)
+OBJ		=	$(SRC:.c=.o)
 
-CFLAGS:		-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror
 
-NAME: 		choco
+NAME	=	choco
+
+TESTS	=	tests/test.c
 
 all:	$(OBJ)
 	$(CC) -o $(NAME) $(SRC) $(CFLAGS)
 
 tests_run:
-	$(CC) -o unit_tests $(SRC) tests/*.c --coverage -lcriterion
+	$(CC) -o unit_tests $(SRC) $(TESTS) --coverage -lcriterion
 	./unit_tests
 
 clean:
 	rm -f $(NAME)
 
 fclean:		clean
+	rm -f $(OBJ)
+	rm -f unit_tests
+	rm -f *.gcda
+	rm -f *.gcno
 
 re:	clean all

@@ -6,6 +6,7 @@
 */
 
 #include <criterion/criterion.h>
+#include <criterion/redirect.h>
 
 int hello(void);
 
