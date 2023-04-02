@@ -18,6 +18,10 @@ NAME: 		choco
 all:	$(OBJ)
 	$(CC) -o $(NAME) $(SRC) $(CFLAGS)
 
+tests_run:
+	$(CC) -o unit_tests $(SRC) tests/*.c --coverage -lcriterion
+	./unit_tests
+
 clean:
 	rm -f $(NAME)
 
